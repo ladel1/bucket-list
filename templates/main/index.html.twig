@@ -2,11 +2,17 @@
 
 {% block title %}Accueil{% endblock %}
 
+{% block item_menu %} 
+<li class="nav-item">
+    <a class="nav-link" href="#">Login</a>
+</li>
+{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
 {% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="row mt-4">
     <h1>Accueil</h1>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut ducimus quis tempora magnam architecto nostrum perferendis dolore asperiores fuga. Est eum labore distinctio numquam ex, eius dolores quam dolorum in!</p>
