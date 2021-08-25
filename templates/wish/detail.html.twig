@@ -4,5 +4,15 @@
 
 {% block content %}
 <h1>Detail souhait</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit itaque voluptatem autem explicabo, eveniet perferendis quae necessitatibus quod blanditiis tempora cumque. Repellendus ea et ad facere, nesciunt amet esse consequatur.</p>
+<div class="row mt-5">
+    <h2>{{wish.title}}</h2>
+    <i> {{wish.dateCreated|date("Y-m-d H:i")}} </i>
+    <p>
+        {{wish.description}}
+    </p>
+    <span>
+        {{wish.author}}
+    </span>
+
+</div>
 {% endblock %}
