@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Wish;
+use App\Form\WishType;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,19 +20,21 @@ class WishController extends AbstractController
     /**
      * @Route("/add", name="_add")
      */
-    public function add(): Response
+    public function add(Request $request,EntityManagerInterface $em): Response
     {
-        $em=$this->getDoctrine()->getManager();
         $wish = new Wish();
-        $wish->setTitle("2321321")
-             ->setDescription("32132132")
-             ->setIsPublished(true)
-             ->setAuthor("Sarah")
-             ->setDateCreated(new \DateTime("now"));
-        $em->persist($wish);
-        $em->flush();
-        dd($wish);
-        
+        $form = $this->createForm(WishType::class,$wish);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $wish->setDateCreated(new \DateTime("now"));
+            $wish->setIsPublished(true);
+            $em->persist($wish);
+            $em->flush();
+            $this->addFlash("message","Idea successfully added!");
+
+            return $this->redirectToRoute("app_wish_detail",['id'=>$wish->getId()]);
+        }
+        return $this->render('wish/ajouter.html.twig',["form"=>$form->createView()]);
     }
 
     /**

@@ -4,6 +4,13 @@
 
 {% block content %}
 <h1>Detail souhait</h1>
+<div class="row mt-4">
+    {% for label,messages in app.flashes %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}    
+    {% endfor %}
+</div>
 <div class="row mt-5">
     <h2>{{wish.title}}</h2>
     <i> {{wish.dateCreated|date("Y-m-d H:i")}} </i>
