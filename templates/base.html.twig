@@ -8,6 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link rel="shortcut icon" type="image/png" href="{{asset('img/favicon.png')}}"/> 
+        <link rel="stylesheet" href="{{asset('css/base.css')}}">
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
@@ -17,11 +18,11 @@
         {% endblock %}
     </head>
     <body>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">
-                      <img style="height: 30px;" src="{{asset('img/logo.png')}}" alt="logo" >
+                      <img style="height: 32px; filter: brightness(0) invert(1);" src="{{asset('img/logo.png')}}" alt="logo" >
                   </a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -59,19 +60,135 @@
                         </li>                                             
                       {% endif %}
                     </ul>
-                    <span class="navbar-text">
-                      Hello <b>{{app.user.username}}</b>
-                    </span>
+                    {% if app.user %}
+                      <span class="navbar-text">
+                        Hello <b>{{app.user.username}}</b>
+                      </span>
+                    {% endif %}
                   </div>
                 </div>
               </nav>
 
+          <div class="container">
+            <div class="page">
+              {% block content %}{% endblock %}
+            </div> 
+          </div> 
+            
+            <footer class="footer-section">
+              <div class="container">
+                  <div class="footer-cta pt-5 pb-5">
+                      <div class="row">
+                          <div class="col-xl-4 col-md-4 mb-30">
+                              <div class="single-cta">
+                                  <i class="fas fa-map-marker-alt"></i>
+                                  <div class="cta-text">
+                                      <h4>Find us</h4>
+                                      <span>2 Rue Georges Perros, 29000 Quimper</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xl-4 col-md-4 mb-30">
+                              <div class="single-cta">
+                                  <i class="fas fa-phone"></i>
+                                  <div class="cta-text">
+                                      <h4>Call us</h4>
+                                      <span>02 98 50 55 13</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xl-4 col-md-4 mb-30">
+                              <div class="single-cta">
+                                  <i class="far fa-envelope-open"></i>
+                                  <div class="cta-text">
+                                      <h4>Mail us</h4>
+                                      <span>mail@campus-eni.com</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="footer-content pt-5 pb-5">
+                      <div class="row">
+                          <div class="col-xl-4 col-lg-4 mb-50">
+                              <div class="footer-widget">
+                                  <div class="footer-logo">
+                                      <a href="index.html"><img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo"></a>
+                                  </div>
+                                  <div class="footer-text">
+                                      <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
+                                      elit,Lorem ipsum dolor sit amet.</p>
+                                  </div>
+                                  <div class="footer-social-icon">
+                                      <span>Follow us</span>
+                                      <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                      <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                      <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                              <div class="footer-widget">
+                                  <div class="footer-widget-heading">
+                                      <h3>Useful Links</h3>
+                                  </div>
+                                  <ul>
+                                      <li><a href="#">Home</a></li>
+                                      <li><a href="#">about</a></li>
+                                      <li><a href="#">services</a></li>
+                                      <li><a href="#">portfolio</a></li>
+                                      <li><a href="#">Contact</a></li>
+                                      <li><a href="#">About us</a></li>
+                                      <li><a href="#">Our Services</a></li>
+                                      <li><a href="#">Expert Team</a></li>
+                                      <li><a href="#">Contact us</a></li>
+                                      <li><a href="#">Latest News</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                              <div class="footer-widget">
+                                  <div class="footer-widget-heading">
+                                      <h3>Subscribe</h3>
+                                  </div>
+                                  <div class="footer-text mb-25">
+                                      <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                                  </div>
+                                  <div class="subscribe-form">
+                                      <form action="#">
+                                          <input type="text" placeholder="Email Address">
+                                          <button><i class="fab fa-telegram-plane"></i></button>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="copyright-area">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                              <div class="copyright-text">
+                                  <p>Copyright &copy; {{"now"|date("Y")}}, All Right Reserved <a href="{{path("main")}}">Bucket List</a></p>
+                              </div>
+                          </div>
+                          <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                              <div class="footer-menu">
+                                  <ul>
+                                      <li><a href="#">Home</a></li>
+                                      <li><a href="#">Terms</a></li>
+                                      <li><a href="#">Privacy</a></li>
+                                      <li><a href="#">Policy</a></li>
+                                      <li><a href="#">Contact</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </footer>
 
-            {% block content %}{% endblock %}
-
-            <footer class="text-center">
-                {{ "now"|date("Y")}}
-            </footer>
-        </div>
+        
     </body>
 </html>
