@@ -4,14 +4,31 @@
 
 {% block content %}
     <div class="row mt-5">
-        <h1>Liste des souhait</h1>
-        {% for wish in wishes %}
-            <li> 
-                <a href="{{path("app_wish_detail",{'id':wish.id})}}">
-                    {{wish.id}} )-> <b>{{wish.title}}</b> <i>{{wish.category.name}}</i>
-                </a>
-            </li>
-        {% endfor %}
+        <h1>La liste de souhaits</h1>
+    </div>
+    <div class="row mt-5">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Catégorie</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for wish in wishes %}
+                    <tr>
+                        <td>{{wish.id}}</td>
+                        <td><a href="{{path("app_wish_detail",{'id':wish.id})}}">{{wish.title}}</a></td>
+                        <td>{{wish.description}}</td>
+                        <td>{{wish.author}}</td>
+                        <td>{{wish.category.name}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>        
     </div>
 
 {% endblock %}
