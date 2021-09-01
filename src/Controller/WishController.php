@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\WishType;
+use App\Service\Censurator;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,12 +21,14 @@ class WishController extends AbstractController
     /**
      * @Route("/add", name="_add")
      */
-    public function add(Request $request,EntityManagerInterface $em): Response
+    public function add(Request $request,EntityManagerInterface $em,Censurator $censu): Response
     {
         $wish = new Wish();
         $form = $this->createForm(WishType::class,$wish);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $wish->setTitle($censu->purify($wish->getTitle()));
+            $wish->setDescription($censu->purify($wish->getDescription()));
             $wish->setDateCreated(new \DateTime("now"));
             $wish->setIsPublished(true);
             $em->persist($wish);
